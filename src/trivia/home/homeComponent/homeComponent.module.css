@@ -1,0 +1,10 @@
+.homeComponent {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.homeComponent button {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,31 @@
+.quizComponent {
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  outline: none;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-flow: column;
+  min-width: 350px;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.displayQuestion {
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 70%;
+  background-color: white;
+  border: 2px solid #e5e5e5;
+  padding: 30px 10px;
+}
+.displayQuestion:hover {
+  border: 2px solid #1cb0f6;
+  background-color: #ddf4ff;
+}
+
+.options {
+  justify-self: flex-end;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}

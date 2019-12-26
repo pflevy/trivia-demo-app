@@ -1,0 +1,4 @@
+.falseButton {
+  composes: genericButton from "../genericButton/genericButton.module.css";
+  background-color: #dc5546;
+}

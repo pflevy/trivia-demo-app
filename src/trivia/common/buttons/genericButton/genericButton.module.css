@@ -1,0 +1,30 @@
+.genericButton {
+  border-radius: 16px;
+  padding: 10px 16px;
+  border-width: 0 0 4px;
+  font-weight: bold;
+  font-size: 17px;
+  min-width: 150px;
+  color: white;
+  letter-spacing: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: #46dc83;
+  outline: none;
+  height: 45px;
+}
+
+.genericButton:hover {
+  filter: brightness(1.1);
+}
+.genericButton:active {
+  transform: translateY(4px);
+  border: none;
+}
+
+.genericButton:disabled {
+  background-color: grey;
+}
+
+.arrow {
+  border: 1px solid black;
+}

@@ -1,0 +1,37 @@
+.feedback {
+  height: 150px;
+  width: 100vw;
+  background-color: #ffbd5b;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: appear 0.5s ease;
+}
+.display {
+  align-items: center;
+  margin: auto 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+img {
+  margin: auto;
+  height: 70px;
+  width: 70px;
+}
+.contentImg {
+  background-color: white;
+  border-radius: 50%;
+  padding: 15px;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
