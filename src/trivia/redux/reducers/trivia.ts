@@ -13,7 +13,7 @@ interface TriviaReducerState {
   isPlaying: boolean;
   showResults: boolean;
   hasGameSession: boolean;
-  hasError?: boolean;
+  hasError: boolean;
 }
 
 const inititalState = {
@@ -22,7 +22,8 @@ const inititalState = {
   difficulty: Difficulty.easy,
   isPlaying: false,
   showResults: false,
-  hasGameSession: false
+  hasGameSession: false,
+  hasError: false
 };
 
 const TriviaReducer = (
@@ -31,16 +32,27 @@ const TriviaReducer = (
 ) => {
   switch (action.type) {
     case actionTypes.LOAD_GAME:
-      return { ...state, isLoading: true };
+      return { ...inititalState, isLoading: true };
+
     case actionTypes.GAME_START:
       return {
         ...state,
         isLoading: false,
         isPlaying: true,
+        showResults: false,
         hasGameSession: true
       };
     case actionTypes.LOAD_GAME_ERROR:
       return { ...state, isLoading: false, hasError: true };
+
+    case actionTypes.SHOW_RESULTS: {
+      return { ...state, showResults: true };
+    }
+
+    case actionTypes.GAME_FINISHED: {
+      return inititalState;
+    }
+
     default:
       return state;
   }

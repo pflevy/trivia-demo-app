@@ -6,6 +6,7 @@ import useKeyPress from "../../../utils/useKeyPress";
 import { useDispatch } from "react-redux";
 import * as actionTypes from "../../redux/types/";
 import ProgressComponent from "../progressComponent/progressComponent";
+import LoadingSpinner from "../../common/loadingSpinner/loadingSpinner";
 
 export interface QuizContainerProps {
   location: RouteComponentProps;
@@ -16,9 +17,12 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   // Redux state
-  const { isLoading, quizAmountOfQuestions } = useSelector(
-    state => state.Trivia
-  );
+  const {
+    isLoading,
+    quizAmountOfQuestions,
+    showResults,
+    hasError
+  } = useSelector(state => state.Trivia);
   const quizData = useSelector(state => state.Quiz);
   // Current quiz question and result
   const quiz = quizData && quizData!.questions[quizData!.currentQuestionNumber];
@@ -34,7 +38,13 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
   }, [trueSelected, falseSelected, continueSelected]);
 
   // Redirect to home on attempt to access route /quiz manually
+  if (hasError) {
+    alert("Something went wrong.");
+    return <Redirect to="/home" />;
+  }
   if (!quizData && !isLoading) return <Redirect to="/home" />;
+  // Redirect to results if game ended already
+  if (showResults) return <Redirect to="/results" />;
 
   //   Handlers
   const handleTrue = () => {
@@ -48,7 +58,7 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
   const handleContinue = () => {
     //   Reached end of questions
     if (quizAmountOfQuestions - 1 === quizData.currentQuestionNumber) {
-      dispatch({ type: actionTypes.GAME_FINISHED });
+      dispatch({ type: actionTypes.SHOW_RESULTS });
       push("/results");
     } else if (quiz.userAnswer !== undefined)
       dispatch({ type: actionTypes.NEXT_QUESTION });
@@ -62,7 +72,7 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
         : false
       : null;
 
-  if (isLoading) return <h1>loading...</h1>;
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div style={{ display: "flex", flexFlow: "column", width: "100%" }}>
       <ProgressComponent questions={quizData && quizData.questions} />

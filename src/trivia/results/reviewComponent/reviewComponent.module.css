@@ -1,0 +1,33 @@
+.reviewComponent {
+  text-align: left;
+  display: flex;
+  flex-flow: column;
+  border-radius: 10px;
+  height: 300px;
+  width: 80%;
+  overflow-y: scroll;
+  background-color: white;
+  border: 10px solid white;
+  position: relative;
+}
+
+.answers {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.question {
+  padding-bottom: 1.33em;
+  padding: 0 20px 1.33em;
+  border-top: 2px solid white;
+}
+
+.rightAnswer {
+  composes: question;
+  background-color: rgba(70, 220, 131, 0.5);
+}
+
+.wrongAnswer {
+  composes: question;
+  background-color: rgba(220, 85, 70, 0.5);
+}

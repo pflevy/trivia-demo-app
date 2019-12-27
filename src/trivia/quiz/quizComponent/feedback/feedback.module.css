@@ -35,3 +35,9 @@ img {
     transform: translateY(0%);
   }
 }
+
+.feedbackText {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+}

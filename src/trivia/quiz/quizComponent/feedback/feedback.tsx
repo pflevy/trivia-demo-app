@@ -2,8 +2,8 @@ import * as React from "react";
 import classes from "./feedback.module.css";
 import GenericButton from "../../../common/buttons/genericButton/genericButton";
 import isMobile from "../../../../utils/isMobile";
-import right from "../../../assets/right.png";
-import wrong from "../../../assets/wrong.png";
+import wrong from "../../../assets/wrong.svg";
+import right from "../../../assets/right.svg";
 
 export interface FeedbackProps {
   gotItRight: boolean | null;
@@ -18,9 +18,12 @@ const Feedback: React.SFC<FeedbackProps> = ({ gotItRight, handleContinue }) => {
         <div className={classes.contentImg}>
           <img
             src={gotItRight ? right : wrong}
-            alt={gotItRight ? "Right" : "Wrong"}
+            alt={gotItRight ? "Correct" : "Wrong"}
           />
         </div>
+        <span className={classes.feedbackText}>
+          {gotItRight ? "Correct!" : "Wrong!"}
+        </span>
         <GenericButton onClick={() => handleContinue()}>
           {isMobile ? "CONTINUE" : "[↵] CONTINUE"}
         </GenericButton>

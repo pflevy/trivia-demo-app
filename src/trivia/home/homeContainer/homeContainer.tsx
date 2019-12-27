@@ -13,12 +13,14 @@ const HomeContainer: React.SFC<HomeContainerProps> = () => {
   const dispatch = useDispatch();
 
   // Redux state
-  const triviaGame = useSelector(state => state.Trivia);
+  const { quizAmountOfQuestions, isPlaying, difficulty } = useSelector(
+    state => state.Trivia
+  );
   const beginTriviaGame = () => {
     dispatch(
       actions.beginTriviaGame({
-        quizAmountOfQuestions: triviaGame.quizAmountOfQuestions,
-        difficulty: triviaGame.difficulty
+        quizAmountOfQuestions: quizAmountOfQuestions,
+        difficulty: difficulty
       })
     );
     push("/quiz");
@@ -28,8 +30,8 @@ const HomeContainer: React.SFC<HomeContainerProps> = () => {
     <>
       <HomeComponent
         beginTriviaGame={beginTriviaGame}
-        hasActiveGame={triviaGame.isPlaying}
-        numberOfQuestions={triviaGame.quizAmountOfQuestions}
+        hasActiveGame={isPlaying}
+        numberOfQuestions={quizAmountOfQuestions}
       />
     </>
   );
