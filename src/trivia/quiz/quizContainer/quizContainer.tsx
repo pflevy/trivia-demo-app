@@ -16,8 +16,12 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   // Redux state
-  const isLoading = useSelector(state => state.Trivia.isLoading);
+  const { isLoading, quizAmountOfQuestions } = useSelector(
+    state => state.Trivia
+  );
   const quizData = useSelector(state => state.Quiz);
+  // Current quiz question and result
+  const quiz = quizData && quizData!.questions[quizData!.currentQuestionNumber];
 
   //   Handle selection through keyboard when on desktop
   const trueSelected = window ? useKeyPress("ArrowRight") : null;
@@ -42,16 +46,15 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
       dispatch({ type: actionTypes.USER_ANSWERED, value: false });
   };
   const handleContinue = () => {
-    if (quizData.currentQuestionNumber === quizData.questions.length - 1) {
+    //   Reached end of questions
+    if (quizAmountOfQuestions - 1 === quizData.currentQuestionNumber) {
       dispatch({ type: actionTypes.GAME_FINISHED });
       push("/results");
-    }
-    if (quiz.userAnswer !== undefined)
+    } else if (quiz.userAnswer !== undefined)
       dispatch({ type: actionTypes.NEXT_QUESTION });
   };
 
-  // Current quiz question and result
-  const quiz = quizData && quizData!.questions[quizData!.currentQuestionNumber];
+  //   Question result
   const gotItRight =
     quiz && quiz.userAnswer !== undefined
       ? quiz.correctAnswer === quiz.userAnswer
@@ -75,4 +78,4 @@ const QuizContainer: React.SFC<QuizContainerProps> = ({ location }) => {
   );
 };
 
-export default React.memo(QuizContainer);
+export default QuizContainer;

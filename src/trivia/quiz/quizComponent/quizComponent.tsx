@@ -20,8 +20,7 @@ const QuizComponent: React.SFC<QuizComponentProps> = ({
   handleTrue,
   handleFalse,
   handleContinue,
-  gotItRight,
-  questions
+  gotItRight
 }) => {
   return (
     <div tabIndex={0} className={classes.quizComponent}>
@@ -50,4 +49,4 @@ const QuizComponent: React.SFC<QuizComponentProps> = ({
   );
 };
 
-export default QuizComponent;
+export default React.memo(QuizComponent);

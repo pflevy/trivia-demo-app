@@ -35,4 +35,4 @@ const ProgressComponent: React.SFC<ProgressComponentProps> = ({
   );
 };
 
-export default ProgressComponent;
+export default React.memo(ProgressComponent);
