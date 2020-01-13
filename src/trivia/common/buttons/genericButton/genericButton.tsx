@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../genericButton/genericButton.module.css";
+import classes from "./genericButton.module.css";
 
 export interface GenericButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
